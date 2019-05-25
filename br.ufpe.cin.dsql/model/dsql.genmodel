@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/br.ufpe.cin.dsql/src" modelPluginID="br.ufpe.cin.dsql"
+    modelName="Dsql" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    copyrightFields="false">
+  <foreignModel>dsql.emf</foreignModel>
+  <genPackages prefix="Dsql" disposableProviderFactory="true" ecorePackage="dsql.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dsql.ecore#//SetOperator">
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//SetOperator/Intersect"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//SetOperator/Union"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//SetOperator/Except"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//SetOperator/ExclusiveUnion"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dsql.ecore#//JoinType">
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//JoinType/Inner"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//JoinType/FullOuter"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//JoinType/LeftOuter"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//JoinType/RightOuter"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//JoinType/FullOuterExcluding"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//JoinType/LeftOuterExcluding"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//JoinType/RightOuterExcluding"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//JoinType/Semi"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//JoinType/Anti"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//JoinType/Division"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dsql.ecore#//LogicalOperationType">
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//LogicalOperationType/And"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//LogicalOperationType/Or"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dsql.ecore#//ColumnType">
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//ColumnType/Field"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//ColumnType/Literal"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//ColumnType/FreeExpression"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//ColumnType/LogicalConnective"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//ColumnType/ConditionalExpression"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//ColumnType/Subquery"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dsql.ecore#//SourceType">
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//SourceType/Table"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//SourceType/Subquery"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dsql.ecore#//SetQuantifier">
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//SetQuantifier/All"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//SetQuantifier/Distinct"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dsql.ecore#//SortSpecification">
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//SortSpecification/Ascending"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//SortSpecification/Descending"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dsql.ecore#//AggregationFunction">
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//AggregationFunction/None"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//AggregationFunction/AVG"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//AggregationFunction/MAX"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//AggregationFunction/MIN"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//AggregationFunction/SUM"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//AggregationFunction/COUNT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dsql.ecore#//UnaryOp">
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//UnaryOp/Exists"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//UnaryOp/IsNull"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//UnaryOp/Unique"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dsql.ecore#//BinaryOp">
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/Equals"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/NotEquals"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/GreaterThan"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/GreaterThanOrEquals"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/LessThan"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/LessThanOrEquals"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/Addition"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/Subtraction"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/Multiplication"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/Divison"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/Concatenation"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/In"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/Like"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/Similar"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/Overlaps"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/Any"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/AnyEquals"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/AnyNotEquals"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/AnyGreaterThan"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/AnyGreaterThanOrEquals"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/AnyLessThan"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/AnyLessThanOrEquals"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/All"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/AllEquals"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/AllNotEquals"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/AllGreaterThan"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/AllGreaterThanOrEquals"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/AllLessThan"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/AllLessThanOrEquals"/>
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//BinaryOp/None"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dsql.ecore#//TernaryOp">
+      <genEnumLiterals ecoreEnumLiteral="dsql.ecore#//TernaryOp/Between"/>
+    </genEnums>
+    <genClasses ecoreClass="dsql.ecore#//QueryDiagram">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//QueryDiagram/dataSource"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsql.ecore#//QueryDiagram/queries"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsql.ecore#//QueryDiagram/links"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsql.ecore#//QueryDiagram/logicalOperations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsql.ecore#//QueryDiagram/conditionalExpressions"/>
+    </genClasses>
+    <genClasses ecoreClass="dsql.ecore#//Query">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//Query/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//Query/limitOffset"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//Query/limitRowCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//Query/setQuantifier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsql.ecore#//Query/select"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsql.ecore#//Query/from"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsql.ecore#//Query/whereHaving"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="dsql.ecore#//ColumnReference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//ColumnReference/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//ColumnReference/groupOrder"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//ColumnReference/sortOrder"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//ColumnReference/alias"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//ColumnReference/sortSpecification"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//ColumnReference/aggregationFunction"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsql.ecore#//ColumnReference/table"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="dsql.ecore#//SourceAndExpression"/>
+    <genClasses ecoreClass="dsql.ecore#//Source">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//Source/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//Source/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//Source/alias"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="dsql.ecore#//Expression"/>
+    <genClasses image="false" ecoreClass="dsql.ecore#//Operation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//Operation/negation"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="dsql.ecore#//Operand"/>
+    <genClasses ecoreClass="dsql.ecore#//Unary">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//Unary/operation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsql.ecore#//Unary/operand1"/>
+    </genClasses>
+    <genClasses ecoreClass="dsql.ecore#//Binary">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//Binary/operation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsql.ecore#//Binary/operand1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsql.ecore#//Binary/operand2"/>
+    </genClasses>
+    <genClasses ecoreClass="dsql.ecore#//Ternary">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//Ternary/operation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsql.ecore#//Ternary/operand1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsql.ecore#//Ternary/operand2"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsql.ecore#//Ternary/operand3"/>
+    </genClasses>
+    <genClasses ecoreClass="dsql.ecore#//LogicalOperation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//LogicalOperation/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//LogicalOperation/negation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsql.ecore#//LogicalOperation/expressions"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="dsql.ecore#//ConditionalExpressionSource">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsql.ecore#//ConditionalExpressionSource/conditionalExpressionLink"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="dsql.ecore#//ConditionalExpression"/>
+    <genClasses ecoreClass="dsql.ecore#//When">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//When/label"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsql.ecore#//When/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsql.ecore#//When/result"/>
+    </genClasses>
+    <genClasses ecoreClass="dsql.ecore#//Else">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//Else/label"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsql.ecore#//Else/result"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="dsql.ecore#//SubqueryTarget">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsql.ecore#//SubqueryTarget/subqueryLinkTarget"/>
+    </genClasses>
+    <genClasses ecoreClass="dsql.ecore#//Column">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//Column/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsql.ecore#//Column/logicalLink"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="dsql.ecore#//Link"/>
+    <genClasses ecoreClass="dsql.ecore#//SetLink">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//SetLink/setQuantifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//SetLink/setOperator"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsql.ecore#//SetLink/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsql.ecore#//SetLink/target"/>
+    </genClasses>
+    <genClasses ecoreClass="dsql.ecore#//JoinLink">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//JoinLink/foreignKeyName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//JoinLink/joinType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsql.ecore#//JoinLink/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsql.ecore#//JoinLink/target"/>
+    </genClasses>
+    <genClasses ecoreClass="dsql.ecore#//JoinConditionLink">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsql.ecore#//JoinConditionLink/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsql.ecore#//JoinConditionLink/target"/>
+    </genClasses>
+    <genClasses ecoreClass="dsql.ecore#//SubqueryLink">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsql.ecore#//SubqueryLink/operation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsql.ecore#//SubqueryLink/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsql.ecore#//SubqueryLink/target"/>
+    </genClasses>
+    <genClasses ecoreClass="dsql.ecore#//LogicalLink">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsql.ecore#//LogicalLink/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsql.ecore#//LogicalLink/target"/>
+    </genClasses>
+    <genClasses ecoreClass="dsql.ecore#//ConditionalExpressionLink">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsql.ecore#//ConditionalExpressionLink/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsql.ecore#//ConditionalExpressionLink/target"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

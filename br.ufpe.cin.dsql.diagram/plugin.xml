@@ -1,0 +1,1470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<!--
+
+-->
+<plugin>
+
+   <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
+      <?gmfgen generated="true"?>
+      <fileTypes type="text" extension="dsql"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser" id="resource-factory">
+      <?gmfgen generated="true"?>
+      <parser
+         type="dsql"
+         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
+      </parser>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors" id="gmf-editor">
+      <?gmfgen generated="true"?>
+      <editor
+         id="dsql.diagram.part.DsqlDiagramEditorID"
+         name="%editorName"
+         icon="icons/obj16/DsqlDiagramFile.gif"
+         extensions="dsql"
+         default="true"
+         class="dsql.diagram.part.DsqlDiagramEditor"
+         matchingStrategy="dsql.diagram.part.DsqlMatchingStrategy"
+         contributorClass="dsql.diagram.part.DsqlDiagramActionBarContributor">
+      </editor>
+   </extension>
+   
+   <extension point="org.eclipse.ui.contexts" id="ui-context">
+      <?gmfgen generated="true"?>
+      <context
+         description="%context.description"
+         id="dsql.diagram.ui.diagramContext"
+         name="%context.name"
+         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
+      <?gmfgen generated="true"?>
+  	  <wizard
+  	     name="%newWizardName"
+  	     icon="icons/obj16/DsqlDiagramFile.gif"
+  	     category="org.eclipse.ui.Examples"
+  	     class="dsql.diagram.part.DsqlCreationWizard"
+  	     id="dsql.diagram.part.DsqlCreationWizardID">
+  	  	 <description>%newWizardDesc</description>  
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
+      <?gmfgen generated="true"?>
+      <objectContribution
+            id="br.ufpe.cin.dsql.diagram.InitDiagram"
+            nameFilter="*.dsql"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               label="%initDiagramActionLabel"
+               class="dsql.diagram.part.DsqlInitDiagramFileAction"
+               menubarPath="additions"
+               enablesFor="1"
+               id="br.ufpe.cin.dsql.diagram.InitDiagramAction">
+         </action>
+      </objectContribution>
+   </extension>
+	
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
+      <?gmfgen generated="true"?>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
+         id="DsqlPresentation">
+         <Priority name="Lowest"/>
+         <ViewId id="dsql.diagram.part.DsqlDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="delete"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
+               <GlobalActionId actionId="save"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="save">
+               </GlobalActionId>
+            </ElementType>        
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.printing.render.providers.DiagramWithPrintGlobalActionHandlerProvider"
+         id="DsqlPresentationPrint">
+         <Priority name="Lowest"/>
+         <ViewId id="dsql.diagram.part.DsqlDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="print"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
+         id="DsqlPresentationIDE">
+         <Priority name="Lowest"/>
+         <ViewId id="dsql.diagram.part.DsqlDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="bookmark"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+            class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
+            id="DsqlRender">
+         <Priority name="Lowest"/>
+         <ViewId id="dsql.diagram.part.DsqlDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="cut"/>
+               <GlobalActionId actionId="copy"/>
+               <GlobalActionId actionId="paste"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+   </extension>
+
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
+      <?gmfgen generated="true"?>
+      <MarkerNavigationProvider class="dsql.diagram.providers.DsqlMarkerNavigationProvider">
+         <MarkerType name="br.ufpe.cin.dsql.diagram.diagnostic"/>
+         <Priority name="Lowest"/>
+      </MarkerNavigationProvider>
+   </extension>
+
+   <extension id="diagnostic" name="Dsql Plugin problems" point="org.eclipse.core.resources.markers">
+      <?gmfgen generated="true"?>
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+      <persistent value="true"/>
+   </extension>   
+
+   <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="dsql.diagram.providers.DsqlValidationDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+         <context decoratorTargets="PRIMARY_VIEW"/>
+      </decoratorProvider>
+   </extension>
+
+   <extension point="org.eclipse.core.runtime.preferences" id="prefs">
+      <?gmfgen generated="true"?>
+      <initializer class="dsql.diagram.preferences.DiagramPreferenceInitializer"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.preferencePages" id="prefpages">
+      <?gmfgen generated="true"?>
+      <page
+            id="br.ufpe.cin.dsql.diagram.general"
+            name="%prefpage.br.ufpe.cin.dsql.diagram.general"
+            class="dsql.diagram.preferences.DiagramGeneralPreferencePage">
+      </page>
+      <page
+            id="br.ufpe.cin.dsql.diagram.appearance"
+            name="%prefpage.br.ufpe.cin.dsql.diagram.appearance"
+            category="br.ufpe.cin.dsql.diagram.general"
+            class="dsql.diagram.preferences.DiagramAppearancePreferencePage">
+      </page>
+      <page
+            id="br.ufpe.cin.dsql.diagram.connections"
+            name="%prefpage.br.ufpe.cin.dsql.diagram.connections"
+            category="br.ufpe.cin.dsql.diagram.general"
+            class="dsql.diagram.preferences.DiagramConnectionsPreferencePage">
+      </page>
+      <page
+            id="br.ufpe.cin.dsql.diagram.printing"
+            name="%prefpage.br.ufpe.cin.dsql.diagram.printing"
+            category="br.ufpe.cin.dsql.diagram.general"
+            class="dsql.diagram.preferences.DiagramPrintingPreferencePage">
+      </page>
+      <page
+            id="br.ufpe.cin.dsql.diagram.rulersAndGrid"
+            name="%prefpage.br.ufpe.cin.dsql.diagram.rulersAndGrid"
+            category="br.ufpe.cin.dsql.diagram.general"
+            class="dsql.diagram.preferences.DiagramRulersAndGridPreferencePage">
+      </page>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
+      <?gmfgen generated="true"?>
+      <propertyContributor
+            contributorId="br.ufpe.cin.dsql.diagram"
+            labelProvider="dsql.diagram.sheet.DsqlSheetLabelProvider">
+         <propertyCategory category="domain"/>
+         <propertyCategory category="visual"/>
+         <propertyCategory category="extra"/>
+      </propertyContributor>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs" id="proptabs">
+      <?gmfgen generated="true"?>   
+      <propertyTabs contributorId="br.ufpe.cin.dsql.diagram">
+         <propertyTab
+             category="visual"
+             id="property.tab.AppearancePropertySection"
+             label="%tab.appearance"/>
+          <propertyTab
+             category="visual"
+             id="property.tab.DiagramPropertySection"
+             label="%tab.diagram"/>
+          <propertyTab
+             category="domain"
+             id="property.tab.domain"
+             label="%tab.domain"/>
+      </propertyTabs>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertySections" id="propsections">
+      <?gmfgen generated="true"?>   
+      <propertySections contributorId="br.ufpe.cin.dsql.diagram">
+         <propertySection id="property.section.ConnectorAppearancePropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ConnectionEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ConnectionAppearancePropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>
+         <propertySection id="property.section.ShapeColorAndFontPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ShapeColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection> 
+         <propertySection id="property.section.DiagramColorsAndFontsPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.DiagramColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>     
+         <propertySection id="property.section.RulerGridPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.grid.RulerGridPropertySection" 
+            tab="property.tab.DiagramPropertySection">
+         </propertySection>     
+         <propertySection
+            id="property.section.domain" 
+            tab="property.tab.domain"
+            class="dsql.diagram.sheet.DsqlPropertySection">
+            <input type="org.eclipse.gmf.runtime.notation.View"/>
+            <input type="org.eclipse.gef.EditPart"/>
+            <input type="dsql.diagram.navigator.DsqlAbstractNavigatorItem"/>
+         </propertySection>
+      </propertySections>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
+      <?gmfgen generated="true"?>
+      <viewProvider class="dsql.diagram.providers.DsqlViewProvider">
+         <Priority name="Lowest"/>
+         <object id="referencing-diagrams" class="org.eclipse.gmf.runtime.notation.Diagram">
+            <method name="getType()" value="dsql"/>
+         </object>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Dsql"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003,2004,3001,3002,3003,3004,3005,3006,3007,3008,3009,3010,3011,3012,3013,3014,3015,3016,3017,3018,3019,3020,3021,3022,3023,3024,3025,3026,3027,3028,3029,3030,3031,3032,3033,3034,3035,3036,3037,3038,3039,3040,3041,3042,3043,3044,3045,3046,3047,3048,3049,3050,3051,3052,3053"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004,4005,4006"/>
+      </viewProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
+      <?gmfgen generated="true"?>
+      <editpartProvider class="dsql.diagram.providers.DsqlEditPartProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
+            <method name="getType()" value="Dsql"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
+            <method name="getType()" value="2001,2002,2003,2004,3001,3002,3003,3004,3005,3006,3007,3008,3009,3010,3011,3012,3013,3014,3015,3016,3017,3018,3019,3020,3021,3022,3023,3024,3025,3026,3027,3028,3029,3030,3031,3032,3033,3034,3035,3036,3037,3038,3039,3040,3041,3042,3043,3044,3045,3046,3047,3048,3049,3050,3051,3052,3053"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
+            <method name="getType()" value="4001,4002,4003,4004,4005,4006"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
+            <method name="getType()" value="5033,5038,5052,5057,5001,5002,5027,5003,5026,5025,5004,5005,5024,5023,5006,5007,5008,5009,5022,5021,5020,5019,5010,5018,5011,5017,5016,5015,5012,5013,5014,5028,5029,5030,5031,5032,5034,5035,5036,5037,5039,5040,5041,5042,5043,5044,5045,5046,5047,5048,5049,5050,5051,5053,5054,5055,5056"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
+            <method name="getType()" value="7001,7002,7003,7004,7005,7006,7007,7008,7009,7010,7011,7012,7013,7014,7015,7016,7017,7018,7019,7020,7021,7022,7023,7024,7025,7026,7027,7028,7029,7030,7031,7032,7033,7034,7035,7036,7037,7038,7039,7040,7041,7042,7043,7044,7045,7046,7047,7048,7049,7050,7051,7052,7053,7054,7055,7056,7057,7058,7059,7060,7061,7062,7063,7064,7065,7066,7067,7068,7069,7070,7071,7072,7073,7074,7075,7076,7077,7078,7079,7080,7081,7082,7083,7084,7085"/>
+         </object>
+         <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
+      </editpartProvider>
+   </extension>
+
+   
+   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
+      <?gmfgen generated="true"?>
+      <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfQueryDiagramEditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.QueryDiagramEditPart" id="QueryDiagram_1000"/>
+         <context elements="QueryDiagram_1000"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfWhenEditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.WhenEditPart" id="When_2001"/>
+         <context elements="When_2001"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfElseEditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.ElseEditPart" id="Else_2002"/>
+         <context elements="Else_2002"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfQueryEditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.QueryEditPart" id="Query_2003"/>
+         <context elements="Query_2003"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfLogicalOperationEditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.LogicalOperationEditPart" id="LogicalOperation_2004"/>
+         <context elements="LogicalOperation_2004"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfColumnEditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.ColumnEditPart" id="Column_3001"/>
+         <context elements="Column_3001"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfColumn2EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Column2EditPart" id="Column_3002"/>
+         <context elements="Column_3002"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfUnaryEditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.UnaryEditPart" id="Unary_3003"/>
+         <context elements="Unary_3003"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfColumn3EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Column3EditPart" id="Column_3004"/>
+         <context elements="Column_3004"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfUnary2EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Unary2EditPart" id="Unary_3005"/>
+         <context elements="Unary_3005"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfBinaryEditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.BinaryEditPart" id="Binary_3006"/>
+         <context elements="Binary_3006"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfColumn4EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Column4EditPart" id="Column_3007"/>
+         <context elements="Column_3007"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfColumn5EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Column5EditPart" id="Column_3008"/>
+         <context elements="Column_3008"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfUnary3EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Unary3EditPart" id="Unary_3009"/>
+         <context elements="Unary_3009"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfTernaryEditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.TernaryEditPart" id="Ternary_3010"/>
+         <context elements="Ternary_3010"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfColumn6EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Column6EditPart" id="Column_3011"/>
+         <context elements="Column_3011"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfColumn7EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Column7EditPart" id="Column_3012"/>
+         <context elements="Column_3012"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfColumn8EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Column8EditPart" id="Column_3013"/>
+         <context elements="Column_3013"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfUnary4EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Unary4EditPart" id="Unary_3014"/>
+         <context elements="Unary_3014"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfBinary2EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Binary2EditPart" id="Binary_3015"/>
+         <context elements="Binary_3015"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfBinary3EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Binary3EditPart" id="Binary_3016"/>
+         <context elements="Binary_3016"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfTernary2EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Ternary2EditPart" id="Ternary_3017"/>
+         <context elements="Ternary_3017"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfTernary3EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Ternary3EditPart" id="Ternary_3018"/>
+         <context elements="Ternary_3018"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfUnary5EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Unary5EditPart" id="Unary_3019"/>
+         <context elements="Unary_3019"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfBinary4EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Binary4EditPart" id="Binary_3020"/>
+         <context elements="Binary_3020"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfUnary6EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Unary6EditPart" id="Unary_3021"/>
+         <context elements="Unary_3021"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfBinary5EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Binary5EditPart" id="Binary_3022"/>
+         <context elements="Binary_3022"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfTernary4EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Ternary4EditPart" id="Ternary_3023"/>
+         <context elements="Ternary_3023"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfTernary5EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Ternary5EditPart" id="Ternary_3024"/>
+         <context elements="Ternary_3024"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfUnary7EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Unary7EditPart" id="Unary_3025"/>
+         <context elements="Unary_3025"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfBinary6EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Binary6EditPart" id="Binary_3026"/>
+         <context elements="Binary_3026"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfTernary6EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Ternary6EditPart" id="Ternary_3027"/>
+         <context elements="Ternary_3027"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfBinary7EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Binary7EditPart" id="Binary_3028"/>
+         <context elements="Binary_3028"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfTernary7EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Ternary7EditPart" id="Ternary_3029"/>
+         <context elements="Ternary_3029"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfUnary8EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Unary8EditPart" id="Unary_3030"/>
+         <context elements="Unary_3030"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfBinary8EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Binary8EditPart" id="Binary_3031"/>
+         <context elements="Binary_3031"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfTernary8EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Ternary8EditPart" id="Ternary_3032"/>
+         <context elements="Ternary_3032"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfColumn9EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Column9EditPart" id="Column_3033"/>
+         <context elements="Column_3033"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfUnary9EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Unary9EditPart" id="Unary_3034"/>
+         <context elements="Unary_3034"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfBinary9EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Binary9EditPart" id="Binary_3035"/>
+         <context elements="Binary_3035"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfTernary9EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Ternary9EditPart" id="Ternary_3036"/>
+         <context elements="Ternary_3036"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfColumn10EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Column10EditPart" id="Column_3037"/>
+         <context elements="Column_3037"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfColumn11EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Column11EditPart" id="Column_3038"/>
+         <context elements="Column_3038"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfColumn12EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Column12EditPart" id="Column_3039"/>
+         <context elements="Column_3039"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfUnary10EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Unary10EditPart" id="Unary_3040"/>
+         <context elements="Unary_3040"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfBinary10EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Binary10EditPart" id="Binary_3041"/>
+         <context elements="Binary_3041"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfTernary10EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Ternary10EditPart" id="Ternary_3042"/>
+         <context elements="Ternary_3042"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfUnary11EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Unary11EditPart" id="Unary_3043"/>
+         <context elements="Unary_3043"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfBinary11EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Binary11EditPart" id="Binary_3044"/>
+         <context elements="Binary_3044"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfTernary11EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Ternary11EditPart" id="Ternary_3045"/>
+         <context elements="Ternary_3045"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfUnary12EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Unary12EditPart" id="Unary_3046"/>
+         <context elements="Unary_3046"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfBinary12EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Binary12EditPart" id="Binary_3047"/>
+         <context elements="Binary_3047"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfTernary12EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Ternary12EditPart" id="Ternary_3048"/>
+         <context elements="Ternary_3048"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfSourceEditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.SourceEditPart" id="Source_3049"/>
+         <context elements="Source_3049"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfColumn13EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Column13EditPart" id="Column_3050"/>
+         <context elements="Column_3050"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfUnary13EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Unary13EditPart" id="Unary_3051"/>
+         <context elements="Unary_3051"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfBinary13EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Binary13EditPart" id="Binary_3052"/>
+         <context elements="Binary_3052"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="dsql.diagram.providers.assistants.DsqlModelingAssistantProviderOfTernary13EditPart">
+         <Priority name="Lowest"/>
+         <object class="dsql.diagram.edit.parts.Ternary13EditPart" id="Ternary_3053"/>
+         <context elements="Ternary_3053"/>
+      </modelingAssistantProvider>
+      
+   </extension>
+
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
+      <?gmfgen generated="true"?>
+      <IconProvider class="dsql.diagram.providers.DsqlIconProvider">
+         <Priority name="Low"/>
+      </IconProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
+      <?gmfgen generated="true"?>
+      <ParserProvider class="dsql.diagram.providers.DsqlParserProvider">
+         <Priority name="Lowest"/>
+      </ParserProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders" id="decorator-provider">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="dsql.diagram.providers.DsqlShortcutsDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="generated-top-nodes">
+            <method name="getType()" value="2001,2002,2003,2004"/>
+         </object>
+         <context decoratorTargets="generated-top-nodes"/>
+      </decoratorProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
+      <?gmfgen generated="true"?>
+      <metamodel nsURI="dsql">
+         <metamodelType
+               id="br.ufpe.cin.dsql.diagram.QueryDiagram_1000"
+               name="%metatype.name.QueryDiagram_1000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="QueryDiagram"
+               edithelper="dsql.diagram.edit.helpers.QueryDiagramEditHelper">
+            <param name="semanticHint" value="1000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <metamodelType
+               id="br.ufpe.cin.dsql.diagram.When_2001"
+               name="%metatype.name.When_2001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="When"
+               edithelper="dsql.diagram.edit.helpers.WhenEditHelper">
+            <param name="semanticHint" value="2001"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <metamodelType
+               id="br.ufpe.cin.dsql.diagram.Else_2002"
+               name="%metatype.name.Else_2002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Else"
+               edithelper="dsql.diagram.edit.helpers.ElseEditHelper">
+            <param name="semanticHint" value="2002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <metamodelType
+               id="br.ufpe.cin.dsql.diagram.Query_2003"
+               name="%metatype.name.Query_2003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Query"
+               edithelper="dsql.diagram.edit.helpers.QueryEditHelper">
+            <param name="semanticHint" value="2003"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <metamodelType
+               id="br.ufpe.cin.dsql.diagram.LogicalOperation_2004"
+               name="%metatype.name.LogicalOperation_2004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="LogicalOperation"
+               edithelper="dsql.diagram.edit.helpers.LogicalOperationEditHelper">
+            <param name="semanticHint" value="2004"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <metamodelType
+               id="br.ufpe.cin.dsql.diagram.Column_3001"
+               name="%metatype.name.Column_3001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Column"
+               edithelper="dsql.diagram.edit.helpers.ColumnEditHelper">
+            <param name="semanticHint" value="3001"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Column_3002"
+               name="%metatype.name.Column_3002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Column_3001"/>
+            <param name="semanticHint" value="3002"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <metamodelType
+               id="br.ufpe.cin.dsql.diagram.Unary_3003"
+               name="%metatype.name.Unary_3003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Unary"
+               edithelper="dsql.diagram.edit.helpers.UnaryEditHelper">
+            <param name="semanticHint" value="3003"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Column_3004"
+               name="%metatype.name.Column_3004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Column_3001"/>
+            <param name="semanticHint" value="3004"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Unary_3005"
+               name="%metatype.name.Unary_3005"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Unary_3003"/>
+            <param name="semanticHint" value="3005"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <metamodelType
+               id="br.ufpe.cin.dsql.diagram.Binary_3006"
+               name="%metatype.name.Binary_3006"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Binary"
+               edithelper="dsql.diagram.edit.helpers.BinaryEditHelper">
+            <param name="semanticHint" value="3006"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Column_3007"
+               name="%metatype.name.Column_3007"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Column_3001"/>
+            <param name="semanticHint" value="3007"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Column_3008"
+               name="%metatype.name.Column_3008"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Column_3001"/>
+            <param name="semanticHint" value="3008"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Unary_3009"
+               name="%metatype.name.Unary_3009"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Unary_3003"/>
+            <param name="semanticHint" value="3009"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <metamodelType
+               id="br.ufpe.cin.dsql.diagram.Ternary_3010"
+               name="%metatype.name.Ternary_3010"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Ternary"
+               edithelper="dsql.diagram.edit.helpers.TernaryEditHelper">
+            <param name="semanticHint" value="3010"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Column_3011"
+               name="%metatype.name.Column_3011"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Column_3001"/>
+            <param name="semanticHint" value="3011"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Column_3012"
+               name="%metatype.name.Column_3012"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Column_3001"/>
+            <param name="semanticHint" value="3012"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Column_3013"
+               name="%metatype.name.Column_3013"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Column_3001"/>
+            <param name="semanticHint" value="3013"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Unary_3014"
+               name="%metatype.name.Unary_3014"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Unary_3003"/>
+            <param name="semanticHint" value="3014"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Binary_3015"
+               name="%metatype.name.Binary_3015"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Binary_3006"/>
+            <param name="semanticHint" value="3015"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Binary_3016"
+               name="%metatype.name.Binary_3016"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Binary_3006"/>
+            <param name="semanticHint" value="3016"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Ternary_3017"
+               name="%metatype.name.Ternary_3017"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Ternary_3010"/>
+            <param name="semanticHint" value="3017"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Ternary_3018"
+               name="%metatype.name.Ternary_3018"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Ternary_3010"/>
+            <param name="semanticHint" value="3018"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Unary_3019"
+               name="%metatype.name.Unary_3019"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Unary_3003"/>
+            <param name="semanticHint" value="3019"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Binary_3020"
+               name="%metatype.name.Binary_3020"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Binary_3006"/>
+            <param name="semanticHint" value="3020"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Unary_3021"
+               name="%metatype.name.Unary_3021"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Unary_3003"/>
+            <param name="semanticHint" value="3021"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Binary_3022"
+               name="%metatype.name.Binary_3022"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Binary_3006"/>
+            <param name="semanticHint" value="3022"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Ternary_3023"
+               name="%metatype.name.Ternary_3023"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Ternary_3010"/>
+            <param name="semanticHint" value="3023"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Ternary_3024"
+               name="%metatype.name.Ternary_3024"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Ternary_3010"/>
+            <param name="semanticHint" value="3024"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Unary_3025"
+               name="%metatype.name.Unary_3025"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Unary_3003"/>
+            <param name="semanticHint" value="3025"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Binary_3026"
+               name="%metatype.name.Binary_3026"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Binary_3006"/>
+            <param name="semanticHint" value="3026"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Ternary_3027"
+               name="%metatype.name.Ternary_3027"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Ternary_3010"/>
+            <param name="semanticHint" value="3027"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Binary_3028"
+               name="%metatype.name.Binary_3028"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Binary_3006"/>
+            <param name="semanticHint" value="3028"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Ternary_3029"
+               name="%metatype.name.Ternary_3029"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Ternary_3010"/>
+            <param name="semanticHint" value="3029"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Unary_3030"
+               name="%metatype.name.Unary_3030"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Unary_3003"/>
+            <param name="semanticHint" value="3030"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Binary_3031"
+               name="%metatype.name.Binary_3031"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Binary_3006"/>
+            <param name="semanticHint" value="3031"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Ternary_3032"
+               name="%metatype.name.Ternary_3032"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Ternary_3010"/>
+            <param name="semanticHint" value="3032"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Column_3033"
+               name="%metatype.name.Column_3033"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Column_3001"/>
+            <param name="semanticHint" value="3033"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Unary_3034"
+               name="%metatype.name.Unary_3034"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Unary_3003"/>
+            <param name="semanticHint" value="3034"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Binary_3035"
+               name="%metatype.name.Binary_3035"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Binary_3006"/>
+            <param name="semanticHint" value="3035"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Ternary_3036"
+               name="%metatype.name.Ternary_3036"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Ternary_3010"/>
+            <param name="semanticHint" value="3036"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Column_3037"
+               name="%metatype.name.Column_3037"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Column_3001"/>
+            <param name="semanticHint" value="3037"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Column_3038"
+               name="%metatype.name.Column_3038"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Column_3001"/>
+            <param name="semanticHint" value="3038"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Column_3039"
+               name="%metatype.name.Column_3039"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Column_3001"/>
+            <param name="semanticHint" value="3039"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Unary_3040"
+               name="%metatype.name.Unary_3040"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Unary_3003"/>
+            <param name="semanticHint" value="3040"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Binary_3041"
+               name="%metatype.name.Binary_3041"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Binary_3006"/>
+            <param name="semanticHint" value="3041"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Ternary_3042"
+               name="%metatype.name.Ternary_3042"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Ternary_3010"/>
+            <param name="semanticHint" value="3042"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Unary_3043"
+               name="%metatype.name.Unary_3043"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Unary_3003"/>
+            <param name="semanticHint" value="3043"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Binary_3044"
+               name="%metatype.name.Binary_3044"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Binary_3006"/>
+            <param name="semanticHint" value="3044"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Ternary_3045"
+               name="%metatype.name.Ternary_3045"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Ternary_3010"/>
+            <param name="semanticHint" value="3045"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Unary_3046"
+               name="%metatype.name.Unary_3046"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Unary_3003"/>
+            <param name="semanticHint" value="3046"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Binary_3047"
+               name="%metatype.name.Binary_3047"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Binary_3006"/>
+            <param name="semanticHint" value="3047"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Ternary_3048"
+               name="%metatype.name.Ternary_3048"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Ternary_3010"/>
+            <param name="semanticHint" value="3048"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <metamodelType
+               id="br.ufpe.cin.dsql.diagram.Source_3049"
+               name="%metatype.name.Source_3049"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Source"
+               edithelper="dsql.diagram.edit.helpers.SourceEditHelper">
+            <param name="semanticHint" value="3049"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Column_3050"
+               name="%metatype.name.Column_3050"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Column_3001"/>
+            <param name="semanticHint" value="3050"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Unary_3051"
+               name="%metatype.name.Unary_3051"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Unary_3003"/>
+            <param name="semanticHint" value="3051"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Binary_3052"
+               name="%metatype.name.Binary_3052"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Binary_3006"/>
+            <param name="semanticHint" value="3052"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <specializationType
+               id="br.ufpe.cin.dsql.diagram.Ternary_3053"
+               name="%metatype.name.Ternary_3053"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="br.ufpe.cin.dsql.diagram.Ternary_3010"/>
+            <param name="semanticHint" value="3053"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <metamodelType
+               id="br.ufpe.cin.dsql.diagram.SetLink_4001"
+               name="%metatype.name.SetLink_4001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="SetLink"
+               edithelper="dsql.diagram.edit.helpers.SetLinkEditHelper">
+            <param name="semanticHint" value="4001"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <metamodelType
+               id="br.ufpe.cin.dsql.diagram.JoinLink_4002"
+               name="%metatype.name.JoinLink_4002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="JoinLink"
+               edithelper="dsql.diagram.edit.helpers.JoinLinkEditHelper">
+            <param name="semanticHint" value="4002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <metamodelType
+               id="br.ufpe.cin.dsql.diagram.JoinConditionLink_4003"
+               name="%metatype.name.JoinConditionLink_4003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="JoinConditionLink"
+               edithelper="dsql.diagram.edit.helpers.JoinConditionLinkEditHelper">
+            <param name="semanticHint" value="4003"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <metamodelType
+               id="br.ufpe.cin.dsql.diagram.SubqueryLink_4004"
+               name="%metatype.name.SubqueryLink_4004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="SubqueryLink"
+               edithelper="dsql.diagram.edit.helpers.SubqueryLinkEditHelper">
+            <param name="semanticHint" value="4004"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <metamodelType
+               id="br.ufpe.cin.dsql.diagram.LogicalLink_4005"
+               name="%metatype.name.LogicalLink_4005"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="LogicalLink"
+               edithelper="dsql.diagram.edit.helpers.LogicalLinkEditHelper">
+            <param name="semanticHint" value="4005"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="dsql">
+         <metamodelType
+               id="br.ufpe.cin.dsql.diagram.ConditionalExpressionLink_4006"
+               name="%metatype.name.ConditionalExpressionLink_4006"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ConditionalExpressionLink"
+               edithelper="dsql.diagram.edit.helpers.ConditionalExpressionLinkEditHelper">
+            <param name="semanticHint" value="4006"/>
+         </metamodelType>
+      </metamodel>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="br.ufpe.cin.dsql.diagram.TypeContext">
+         <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="br.ufpe.cin.dsql.diagram.EditingDomain"/>
+         </enablement>
+      </clientContext> 
+      <binding context="br.ufpe.cin.dsql.diagram.TypeContext">
+         <elementType ref="br.ufpe.cin.dsql.diagram.QueryDiagram_1000"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.When_2001"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Else_2002"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Query_2003"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.LogicalOperation_2004"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Column_3001"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Column_3002"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Unary_3003"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Column_3004"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Unary_3005"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Binary_3006"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Column_3007"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Column_3008"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Unary_3009"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Ternary_3010"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Column_3011"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Column_3012"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Column_3013"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Unary_3014"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Binary_3015"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Binary_3016"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Ternary_3017"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Ternary_3018"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Unary_3019"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Binary_3020"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Unary_3021"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Binary_3022"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Ternary_3023"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Ternary_3024"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Unary_3025"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Binary_3026"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Ternary_3027"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Binary_3028"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Ternary_3029"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Unary_3030"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Binary_3031"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Ternary_3032"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Column_3033"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Unary_3034"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Binary_3035"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Ternary_3036"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Column_3037"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Column_3038"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Column_3039"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Unary_3040"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Binary_3041"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Ternary_3042"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Unary_3043"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Binary_3044"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Ternary_3045"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Unary_3046"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Binary_3047"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Ternary_3048"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Source_3049"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Column_3050"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Unary_3051"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Binary_3052"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.Ternary_3053"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.SetLink_4001"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.JoinLink_4002"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.JoinConditionLink_4003"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.SubqueryLink_4004"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.LogicalLink_4005"/>
+         <elementType ref="br.ufpe.cin.dsql.diagram.ConditionalExpressionLink_4006"/>
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+   </extension>
+	   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isURIEditorInput">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="br.ufpe.cin.dsql.diagram.URIEditorInputPropertyTester"
+           type="org.eclipse.emf.common.ui.URIEditorInput"
+           namespace="br.ufpe.cin.dsql.diagram"
+           properties="isURIEditorInput"
+           class="dsql.diagram.part.DsqlUriEditorInputTester">
+       </propertyTester>
+   </extension>
+
+	   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isShortcut">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="br.ufpe.cin.dsql.diagram.ShortcutPropertyTester"
+           type="org.eclipse.gmf.runtime.notation.View"
+           namespace="br.ufpe.cin.dsql.diagram"
+           properties="isShortcut"
+           class="dsql.diagram.part.DsqlShortcutPropertyTester">
+       </propertyTester>
+   </extension>
+
+	   <extension point="org.eclipse.ui.navigator.viewer" id="navigator-viewbinding">
+      <?gmfgen generated="true"?>
+      <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <contentExtension pattern="br.ufpe.cin.dsql.diagram.resourceContent"/>
+			<contentExtension pattern="br.ufpe.cin.dsql.diagram.domainResourceContent"/>
+            <contentExtension pattern="br.ufpe.cin.dsql.diagram.navigatorLinkHelper"/>
+         </includes>
+      </viewerContentBinding>
+      <viewerActionBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <actionExtension pattern="br.ufpe.cin.dsql.diagram.navigatorActionProvider"/>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+
+   <extension point="org.eclipse.ui.navigator.navigatorContent" id="navigator-content">
+      <?gmfgen generated="true"?>
+      <navigatorContent
+            id="br.ufpe.cin.dsql.diagram.resourceContent" 
+            name="%navigatorContentName" 
+            priority="normal" 
+            contentProvider="dsql.diagram.navigator.DsqlNavigatorContentProvider" 
+            labelProvider="dsql.diagram.navigator.DsqlNavigatorLabelProvider"
+            icon="icons/obj16/DsqlDiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="dsql"/>
+               </and>
+               <instanceof value="dsql.diagram.navigator.DsqlAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="br.ufpe.cin.dsql.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <or>
+         	   <instanceof value="dsql.diagram.navigator.DsqlAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="br.ufpe.cin.dsql.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </possibleChildren>
+         <commonSorter 
+               id="br.ufpe.cin.dsql.diagram.navigatorSorter" 
+               class="dsql.diagram.navigator.DsqlNavigatorSorter">
+            <parentExpression>
+               <or>
+	              <and>
+    	             <instanceof value="org.eclipse.core.resources.IFile"/>
+        	         <test property="org.eclipse.core.resources.extension" value="dsql"/>
+                  </and>
+                  <instanceof value="dsql.diagram.navigator.DsqlAbstractNavigatorItem"/>
+               </or>
+            </parentExpression>
+         </commonSorter>
+      </navigatorContent>
+      <navigatorContent
+            id="br.ufpe.cin.dsql.diagram.domainResourceContent" 
+            name="%domainNavigatorContentName" 
+            priority="normal" 
+            contentProvider="dsql.diagram.navigator.DsqlDomainNavigatorContentProvider" 
+            labelProvider="dsql.diagram.navigator.DsqlDomainNavigatorLabelProvider"
+            icon="icons/obj16/DsqlDiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="dsql"/>
+               </and>
+               <instanceof value="dsql.diagram.navigator.DsqlDomainNavigatorItem"/>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <instanceof value="dsql.diagram.navigator.DsqlDomainNavigatorItem"/>
+         </possibleChildren>
+      </navigatorContent>
+      <actionProvider
+            id="br.ufpe.cin.dsql.diagram.navigatorActionProvider"
+            class="dsql.diagram.navigator.DsqlNavigatorActionProvider">
+         <enablement>
+            <or>
+               <instanceof value="dsql.diagram.navigator.DsqlAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="br.ufpe.cin.dsql.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </enablement>
+      </actionProvider>
+   </extension>
+   
+	   <extension point="org.eclipse.ui.navigator.linkHelper" id="navigator-linkhelper">
+      <?gmfgen generated="true"?>
+      <linkHelper
+            id="br.ufpe.cin.dsql.diagram.navigatorLinkHelper"
+            class="dsql.diagram.navigator.DsqlNavigatorLinkHelper">
+         <editorInputEnablement>
+            <and>
+               <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
+               <test property="br.ufpe.cin.dsql.diagram.isURIEditorInput"/>
+            </and>
+         </editorInputEnablement>
+         <selectionEnablement>
+            <instanceof value="dsql.diagram.navigator.DsqlAbstractNavigatorItem"/>
+         </selectionEnablement>
+      </linkHelper>
+   </extension>
+   <extension point="org.eclipse.ui.commands" id="update-cmd">
+      <?gmfgen generated="true"?>
+      <command
+         categoryId="org.eclipse.ui.category.edit"
+         defaultHandler="dsql.diagram.part.DsqlDiagramUpdateCommand"
+         description="%update.diagram.description"
+         id="dsql.diagram.updateDiagram"
+         name="%update.diagram.name"/>
+   </extension>
+   
+   <extension point="org.eclipse.ui.bindings" id="update-cmd-binding">
+      <?gmfgen generated="true"?>
+      <key 
+         commandId="dsql.diagram.updateDiagram"
+         contextId="dsql.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="F5"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.menus" id="context-menus">
+      <?gmfgen generated="true"?>
+      <!-- menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
+      </menuContribution>
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
+      </menuContribution -->
+      <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <command commandId="br.ufpe.cin.dsql.diagram.LoadResourceAction">
+            <visibleWhen>
+               <and>
+                  <with variable="activePartId"><equals value="dsql.diagram.part.DsqlDiagramEditorID"/></with>
+                  <with variable="selection"><iterate ifEmpty="false"> 
+                     <instanceof value="dsql.diagram.edit.parts.QueryDiagramEditPart"/>
+                  </iterate></with>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+   <extension point="org.eclipse.ui.commands" id="menu-commands">
+      <?gmfgen generated="true"?>
+      <category id="dsql.diagram.part.DsqlDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
+      <command id="br.ufpe.cin.dsql.diagram.LoadResourceAction"
+         name="Load Resource"
+         categoryId="dsql.diagram.part.DsqlDiagramEditorID"
+         defaultHandler="dsql.diagram.part.LoadResourceAction"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.handlers" id="menu-handlers">
+      <?gmfgen generated="true"?>
+   </extension>
+
+   <!-- optionally, specify keybindings -->
+</plugin>

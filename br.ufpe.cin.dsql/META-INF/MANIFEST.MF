@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: br.ufpe.cin.dsql;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Automatic-Module-Name: br.ufpe.cin.dsql
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: dsql,
+ dsql.impl,
+ dsql.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.transaction;bundle-version="1.9.0"
+Bundle-ActivationPolicy: lazy

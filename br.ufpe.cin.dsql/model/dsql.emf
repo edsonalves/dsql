@@ -1,0 +1,279 @@
+@namespace(uri="dsql", prefix="dsql")
+@gmf
+package dsql;
+
+@gmf.diagram(onefile="true", diagram.extension="dsql")
+class QueryDiagram {
+  attr String dataSource;
+  
+  val Query[*] queries;
+  val Link[*] links;
+  val LogicalOperation[*] logicalOperations;
+  val ConditionalExpression[*] conditionalExpressions;
+}
+
+@gmf.node(resizable="false", label="name", label.icon="false", border.width="1", border.color="0,0,0", margin="3", figure="rectangle")
+class Query {
+  attr String name;
+  attr int limitOffset;
+  attr int limitRowCount;
+  attr SetQuantifier setQuantifier;
+
+  @gmf.compartment(layout="list")
+  val ColumnReference[*] select;
+
+  @gmf.compartment
+  val SourceAndExpression[*] from;
+
+  @gmf.compartment(layout="list")
+  val Expression[0..1] whereHaving;
+}
+
+@gmf.node(resizable="false", label="name", label.icon="false", border.width="1", border.color="255,255,255", margin="3", figure="rectangle")
+abstract class ColumnReference {
+  attr String name;
+  attr int groupOrder;
+  attr int sortOrder;
+  attr String alias;
+  attr SortSpecification sortSpecification;
+  attr AggregationFunction aggregationFunction;
+  
+  ref Source[0..1] table;
+}
+
+abstract class SourceAndExpression { }
+
+@gmf.node(resizable="false", label="name", label.icon="false", border.width="1", border.color="255,255,255", margin="3", figure="rectangle")
+class Source extends SubqueryTarget, SourceAndExpression {
+  attr SourceType type;
+  attr String name;
+  attr String alias;
+}
+
+abstract class Expression extends Operand, SourceAndExpression, ColumnReference {
+ 
+}
+
+@gmf.node(label="operation", border.color="0,0,0", border.style="dash", margin="3", figure="rectangle")
+abstract class Operation extends Expression {
+  attr boolean negation;
+}
+
+abstract class Operand { }
+
+class Unary extends Operation {
+  attr UnaryOp operation;
+  
+  @gmf.compartment(layout="list")
+  val Operand[1] operand1;
+}
+
+class Binary extends Operation {
+  attr BinaryOp operation;
+  
+  @gmf.compartment(layout="list")
+  val Operand[1] operand1;
+  @gmf.compartment(layout="list")
+  val Operand[1] operand2;
+}
+
+class Ternary extends Operation {
+  attr TernaryOp operation;
+  
+  @gmf.compartment(layout="list")
+  val Operand[1] operand1;
+  @gmf.compartment(layout="list")
+  val Operand[1] operand2;
+  @gmf.compartment(layout="list")
+  val Operand[1] operand3;
+}
+
+
+@gmf.node(label="type", resizable="false", label.icon="false", border.width="1", border.color="0,0,0", margin="3", figure="rectangle")
+class LogicalOperation  {
+  attr LogicalOperationType type;
+  attr boolean negation;
+
+  @gmf.compartment(layout="list")
+  val Expression[1..*] expressions;
+}
+
+abstract class ConditionalExpressionSource {
+  ref ConditionalExpressionLink[1]#source conditionalExpressionLink;	
+}
+
+@gmf.node(label="label", label.readOnly="true", resizable="false", label.icon="false", border.width="1", border.color="0,0,0", margin="3", figure="rectangle")
+abstract class ConditionalExpression {	
+}
+
+class When extends ConditionalExpression, ConditionalExpressionSource {
+  attr String label;
+  @gmf.compartment(layout="list")
+  val Expression[1] condition;
+  
+  @gmf.compartment(layout="list")
+  val Expression[1] result;
+}
+
+class Else extends ConditionalExpression {
+  attr String label;
+    
+  @gmf.compartment(layout="list")
+  val Expression[1] result;
+}
+
+
+abstract class SubqueryTarget { 
+  ref SubqueryLink[1]#target subqueryLinkTarget;
+}
+
+class Column extends SubqueryTarget, ConditionalExpressionSource, Expression {
+  attr ColumnType type;
+  ref LogicalLink[1]#source logicalLink;   
+}
+
+@gmf.link(source="source", target="target", incoming="true", color="0,0,0", width="1")
+abstract class Link {
+}
+
+@gmf.link(style="dash", target.decoration="filledclosedarrow", label="setOperator")
+class SetLink extends Link {
+  attr SetQuantifier setQuantifier;
+  attr SetOperator setOperator;
+  ref Query[1] source;
+  ref Query[1] target;
+}
+
+@gmf.link(style="dash", target.decoration="filledclosedarrow", label="joinType")
+class JoinLink extends Link {
+  attr String foreignKeyName;
+  attr JoinType joinType;
+  ref Source[1] source;
+  ref Source[1] target;
+}
+
+@gmf.link(style="dash")
+class JoinConditionLink extends Link {
+  ref JoinLink[1] source;
+  ref Expression[1] target;
+}
+
+@gmf.link(style="solid", label="operation")
+class SubqueryLink extends Link {
+  attr BinaryOp operation;
+  ref Query[1] source;
+  ref SubqueryTarget[1]#subqueryLinkTarget target;
+}
+
+@gmf.link(style="solid", target.decoration="arrow")
+class LogicalLink extends Link {
+  ref Column[1]#logicalLink source;
+  ref LogicalOperation[1] target;
+}
+
+@gmf.link(style="solid", target.decoration="closedarrow")
+class ConditionalExpressionLink extends Link {
+  ref ConditionalExpressionSource[1]#conditionalExpressionLink source;
+  ref ConditionalExpression[1] target;
+}
+
+enum SetOperator {
+  Intersect = 0;
+  Union = 1;
+  Except = 2;
+  ExclusiveUnion = 3;
+}
+
+enum JoinType {
+  Inner = 0;
+  FullOuter = 1;
+  LeftOuter = 2;
+  RightOuter = 3;
+  FullOuterExcluding = 4;
+  LeftOuterExcluding = 5;
+  RightOuterExcluding = 6;
+  Semi = 7;
+  Anti = 8;
+  Division = 9;
+}
+
+enum LogicalOperationType {
+  And = 0;
+  Or = 1;
+}
+
+enum ColumnType {
+  Field = 0;
+  Literal = 1;
+  FreeExpression = 2;
+  LogicalConnective = 3;
+  ConditionalExpression = 4;
+  Subquery = 5;
+}
+
+enum SourceType {
+  Table = 0;
+  Subquery = 1;
+}
+
+enum SetQuantifier {
+  All = 0;
+  Distinct = 1;
+}
+
+enum SortSpecification {
+  Ascending = 0;
+  Descending = 1;
+}
+
+enum AggregationFunction {
+  None = 0;
+  AVG = 1;
+  MAX = 2;
+  MIN = 3;
+  SUM = 4;
+  COUNT = 5;
+}
+
+enum UnaryOp {
+  Exists = 0;
+  IsNull = 1;
+  Unique = 2;
+}
+
+enum BinaryOp {
+  Equals = 0;
+  NotEquals = 1;
+  GreaterThan = 2;
+  GreaterThanOrEquals = 3;
+  LessThan = 4;
+  LessThanOrEquals = 5;
+  Addition = 6;
+  Subtraction = 7;
+  Multiplication = 8;
+  Divison = 9;
+  Concatenation = 10;
+  In = 11;
+  Like = 12;
+  Similar = 13;
+  Overlaps = 14;
+  Any = 15;
+  AnyEquals = 16;
+  AnyNotEquals = 17;
+  AnyGreaterThan = 18;
+  AnyGreaterThanOrEquals = 19;
+  AnyLessThan = 20;
+  AnyLessThanOrEquals = 21;
+  All = 22;
+  AllEquals = 23;
+  AllNotEquals = 24;
+  AllGreaterThan = 25;
+  AllGreaterThanOrEquals = 26;
+  AllLessThan = 27;
+  AllLessThanOrEquals = 28;  
+  None = 99;
+}
+
+enum TernaryOp {
+  Between = 0;
+}

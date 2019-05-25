@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="ASCII"?>
+<gmfgraph:Canvas xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="dsql">
+  <figures name="Default">
+    <figures xsi:type="gmfgraph:PolygonDecoration" name="FilledClosedArrow">
+      <template/>
+      <template x="-2" y="2"/>
+      <template x="-2" y="-2"/>
+      <template/>
+    </figures>
+    <figures xsi:type="gmfgraph:PolygonDecoration" name="FilledClosedArrow">
+      <template/>
+      <template x="-2" y="2"/>
+      <template x="-2" y="-2"/>
+      <template/>
+    </figures>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="LogicalLinkFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolygonDecoration" name="ClosedArrow">
+      <backgroundColor xsi:type="gmfgraph:ConstantColor"/>
+      <template/>
+      <template x="-2" y="2"/>
+      <template x="-2" y="-2"/>
+      <template/>
+    </figures>
+    <descriptors name="QueryFigure">
+      <actualFigure xsi:type="gmfgraph:Rectangle" name="QueryFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="3" left="3" bottom="3" right="3"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="QueryLabelFigure" text="Query">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="QuerySelectCompartmentFigure" outline="false"/>
+        <children xsi:type="gmfgraph:Rectangle" name="QueryFromCompartmentFigure" outline="false"/>
+        <children xsi:type="gmfgraph:Rectangle" name="QueryWhereHavingCompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigureQueryLabelFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+      <accessors accessor="getQuerySelectCompartmentFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.1"/>
+      <accessors accessor="getQueryFromCompartmentFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.2"/>
+      <accessors accessor="getQueryWhereHavingCompartmentFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.3"/>
+    </descriptors>
+    <descriptors name="SourceFigure">
+      <actualFigure xsi:type="gmfgraph:Rectangle" name="SourceFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor" red="255" green="255" blue="255"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="3" left="3" bottom="3" right="3"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="SourceLabelFigure" text="Source"/>
+      </actualFigure>
+      <accessors accessor="getFigureSourceLabelFigure" figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="UnaryFigure">
+      <actualFigure xsi:type="gmfgraph:Rectangle" name="UnaryFigure" lineKind="LINE_DASH">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="3" left="3" bottom="3" right="3"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="UnaryLabelFigure" text="Unary">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="UnaryOperand1CompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigureUnaryLabelFigure" figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
+      <accessors accessor="getUnaryOperand1CompartmentFigure" figure="//@figures.0/@descriptors.2/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors name="BinaryFigure">
+      <actualFigure xsi:type="gmfgraph:Rectangle" name="BinaryFigure" lineKind="LINE_DASH">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="3" left="3" bottom="3" right="3"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="BinaryLabelFigure" text="Binary">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="BinaryOperand1CompartmentFigure" outline="false"/>
+        <children xsi:type="gmfgraph:Rectangle" name="BinaryOperand2CompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigureBinaryLabelFigure" figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
+      <accessors accessor="getBinaryOperand1CompartmentFigure" figure="//@figures.0/@descriptors.3/@actualFigure/@children.1"/>
+      <accessors accessor="getBinaryOperand2CompartmentFigure" figure="//@figures.0/@descriptors.3/@actualFigure/@children.2"/>
+    </descriptors>
+    <descriptors name="TernaryFigure">
+      <actualFigure xsi:type="gmfgraph:Rectangle" name="TernaryFigure" lineKind="LINE_DASH">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="3" left="3" bottom="3" right="3"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="TernaryLabelFigure" text="Ternary">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="TernaryOperand1CompartmentFigure" outline="false"/>
+        <children xsi:type="gmfgraph:Rectangle" name="TernaryOperand2CompartmentFigure" outline="false"/>
+        <children xsi:type="gmfgraph:Rectangle" name="TernaryOperand3CompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigureTernaryLabelFigure" figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
+      <accessors accessor="getTernaryOperand1CompartmentFigure" figure="//@figures.0/@descriptors.4/@actualFigure/@children.1"/>
+      <accessors accessor="getTernaryOperand2CompartmentFigure" figure="//@figures.0/@descriptors.4/@actualFigure/@children.2"/>
+      <accessors accessor="getTernaryOperand3CompartmentFigure" figure="//@figures.0/@descriptors.4/@actualFigure/@children.3"/>
+    </descriptors>
+    <descriptors name="LogicalOperationFigure">
+      <actualFigure xsi:type="gmfgraph:Rectangle" name="LogicalOperationFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="3" left="3" bottom="3" right="3"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="LogicalOperationLabelFigure" text="LogicalOperation">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="LogicalOperationExpressionsCompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigureLogicalOperationLabelFigure" figure="//@figures.0/@descriptors.5/@actualFigure/@children.0"/>
+      <accessors accessor="getLogicalOperationExpressionsCompartmentFigure" figure="//@figures.0/@descriptors.5/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors name="WhenFigure">
+      <actualFigure xsi:type="gmfgraph:Rectangle" name="WhenFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="3" left="3" bottom="3" right="3"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="WhenLabelFigure" text="When">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="WhenConditionCompartmentFigure" outline="false"/>
+        <children xsi:type="gmfgraph:Rectangle" name="WhenResultCompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigureWhenLabelFigure" figure="//@figures.0/@descriptors.6/@actualFigure/@children.0"/>
+      <accessors accessor="getWhenConditionCompartmentFigure" figure="//@figures.0/@descriptors.6/@actualFigure/@children.1"/>
+      <accessors accessor="getWhenResultCompartmentFigure" figure="//@figures.0/@descriptors.6/@actualFigure/@children.2"/>
+    </descriptors>
+    <descriptors name="ElseFigure">
+      <actualFigure xsi:type="gmfgraph:Rectangle" name="ElseFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="3" left="3" bottom="3" right="3"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="ElseLabelFigure" text="Else">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="ElseResultCompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigureElseLabelFigure" figure="//@figures.0/@descriptors.7/@actualFigure/@children.0"/>
+      <accessors accessor="getElseResultCompartmentFigure" figure="//@figures.0/@descriptors.7/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors name="ColumnFigure">
+      <actualFigure xsi:type="gmfgraph:Rectangle" name="ColumnFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor" red="255" green="255" blue="255"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="3" left="3" bottom="3" right="3"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="ColumnLabelFigure" text="Column"/>
+      </actualFigure>
+      <accessors accessor="getFigureColumnLabelFigure" figure="//@figures.0/@descriptors.8/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="SetLinkFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="SetLinkFigure" lineKind="LINE_DASH" targetDecoration="//@figures.0/@figures.0">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="SetLinkLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="SetLinkLabelLabel" text="SetLink"/>
+    </descriptors>
+    <descriptors name="JoinLinkFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="JoinLinkFigure" lineKind="LINE_DASH" targetDecoration="//@figures.0/@figures.1">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="JoinLinkLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="JoinLinkLabelLabel" text="JoinLink"/>
+    </descriptors>
+    <descriptors name="JoinConditionLinkFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="JoinConditionLinkFigure" lineKind="LINE_DASH">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="SubqueryLinkFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="SubqueryLinkFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="SubqueryLinkLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="SubqueryLinkLabelLabel" text="SubqueryLink"/>
+    </descriptors>
+    <descriptors name="LogicalLinkFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="LogicalLinkFigure" targetDecoration="//@figures.0/@figures.2">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="ConditionalExpressionLinkFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ConditionalExpressionLinkFigure" targetDecoration="//@figures.0/@figures.3">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+  </figures>
+  <nodes name="Query" figure="QueryFigure"/>
+  <nodes name="Source" figure="SourceFigure"/>
+  <nodes name="Unary" figure="UnaryFigure"/>
+  <nodes name="Binary" figure="BinaryFigure"/>
+  <nodes name="Ternary" figure="TernaryFigure"/>
+  <nodes name="LogicalOperation" figure="LogicalOperationFigure"/>
+  <nodes name="When" figure="WhenFigure"/>
+  <nodes name="Else" figure="ElseFigure"/>
+  <nodes name="Column" figure="ColumnFigure"/>
+  <connections name="SetLink" figure="SetLinkFigure"/>
+  <connections name="JoinLink" figure="JoinLinkFigure"/>
+  <connections name="JoinConditionLink" figure="JoinConditionLinkFigure"/>
+  <connections name="SubqueryLink" figure="SubqueryLinkFigure"/>
+  <connections name="LogicalLink" figure="LogicalLinkFigure"/>
+  <connections name="ConditionalExpressionLink" figure="ConditionalExpressionLinkFigure"/>
+  <compartments name="QuerySelectCompartment" figure="QueryFigure" collapsible="true" accessor="//@figures.0/@descriptors.0/@accessors.1"/>
+  <compartments name="QueryFromCompartment" figure="QueryFigure" collapsible="true" accessor="//@figures.0/@descriptors.0/@accessors.2"/>
+  <compartments name="QueryWhereHavingCompartment" figure="QueryFigure" collapsible="true" accessor="//@figures.0/@descriptors.0/@accessors.3"/>
+  <compartments name="UnaryOperand1Compartment" figure="UnaryFigure" collapsible="true" accessor="//@figures.0/@descriptors.2/@accessors.1"/>
+  <compartments name="BinaryOperand1Compartment" figure="BinaryFigure" collapsible="true" accessor="//@figures.0/@descriptors.3/@accessors.1"/>
+  <compartments name="BinaryOperand2Compartment" figure="BinaryFigure" collapsible="true" accessor="//@figures.0/@descriptors.3/@accessors.2"/>
+  <compartments name="TernaryOperand1Compartment" figure="TernaryFigure" collapsible="true" accessor="//@figures.0/@descriptors.4/@accessors.1"/>
+  <compartments name="TernaryOperand2Compartment" figure="TernaryFigure" collapsible="true" accessor="//@figures.0/@descriptors.4/@accessors.2"/>
+  <compartments name="TernaryOperand3Compartment" figure="TernaryFigure" collapsible="true" accessor="//@figures.0/@descriptors.4/@accessors.3"/>
+  <compartments name="LogicalOperationExpressionsCompartment" figure="LogicalOperationFigure" collapsible="true" accessor="//@figures.0/@descriptors.5/@accessors.1"/>
+  <compartments name="WhenConditionCompartment" figure="WhenFigure" collapsible="true" accessor="//@figures.0/@descriptors.6/@accessors.1"/>
+  <compartments name="WhenResultCompartment" figure="WhenFigure" collapsible="true" accessor="//@figures.0/@descriptors.6/@accessors.2"/>
+  <compartments name="ElseResultCompartment" figure="ElseFigure" collapsible="true" accessor="//@figures.0/@descriptors.7/@accessors.1"/>
+  <labels name="QueryLabel" figure="QueryFigure" elementIcon="false" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+  <labels name="SourceLabel" figure="SourceFigure" elementIcon="false" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
+  <labels name="UnaryLabel" figure="UnaryFigure" elementIcon="false" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
+  <labels name="BinaryLabel" figure="BinaryFigure" elementIcon="false" accessor="//@figures.0/@descriptors.3/@accessors.0"/>
+  <labels name="TernaryLabel" figure="TernaryFigure" elementIcon="false" accessor="//@figures.0/@descriptors.4/@accessors.0"/>
+  <labels name="LogicalOperationLabel" figure="LogicalOperationFigure" elementIcon="false" accessor="//@figures.0/@descriptors.5/@accessors.0"/>
+  <labels name="WhenLabel" figure="WhenFigure" elementIcon="false" accessor="//@figures.0/@descriptors.6/@accessors.0"/>
+  <labels name="ElseLabel" figure="ElseFigure" elementIcon="false" accessor="//@figures.0/@descriptors.7/@accessors.0"/>
+  <labels name="ColumnLabel" figure="ColumnFigure" elementIcon="false" accessor="//@figures.0/@descriptors.8/@accessors.0"/>
+  <labels name="SetLinkLabel" figure="SetLinkLabelFigure" elementIcon="false"/>
+  <labels name="JoinLinkLabel" figure="JoinLinkLabelFigure" elementIcon="false"/>
+  <labels name="SubqueryLinkLabel" figure="SubqueryLinkLabelFigure" elementIcon="false"/>
+</gmfgraph:Canvas>

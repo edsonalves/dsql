@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated dsql -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="dsql.presentation.DsqlModelWizardID"
+            name="%_UI_DsqlModelWizard_label"
+            class="dsql.presentation.DsqlModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/DsqlModelFile.gif">
+         <description>%_UI_DsqlModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated dsql -->
+      <editor
+            id="dsql.presentation.DsqlEditorID"
+            name="%_UI_DsqlEditor_label"
+            icon="icons/full/obj16/DsqlModelFile.gif"
+            extensions="dsql"
+            class="dsql.presentation.DsqlEditor"
+            contributorClass="dsql.presentation.DsqlActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

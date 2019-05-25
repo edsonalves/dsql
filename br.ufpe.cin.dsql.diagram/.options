@@ -1,0 +1,7 @@
+# Tracing options for the br.ufpe.cin.dsql.diagram plug-in
+
+# Common issues
+br.ufpe.cin.dsql.diagram/debug=false
+
+# Visual IDs
+br.ufpe.cin.dsql.diagram/debug/visualID=false
