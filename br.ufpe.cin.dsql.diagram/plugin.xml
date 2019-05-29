@@ -5,6 +5,190 @@
 -->
 <plugin>
 
+<!-- Menus -->
+
+<extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar id="br.ufpe.cin.dsql.diagram.toolbar1"
+               label="Workbench Wizards">
+            
+           <command
+                  commandId="org.eclipse.ui.newWizard"
+                  style="push">
+               <parameter
+                     name="newWizardId"
+                     value="org.eclipse.ui.wizards.new.project">
+               </parameter>
+            </command>    
+            
+            <command
+                  commandId="org.eclipse.ui.newWizard"
+                  style="push">
+               <parameter
+                     name="newWizardId"
+                     value="dsql.diagram.part.DsqlCreationWizardID">
+               </parameter>
+            </command>
+            
+			<!--
+            <command
+                  commandId="eer.diagram.custom.part.transformation.TransformationHandler"
+                  icon="icons/transformation.png"
+                  id="eer.diagram.custom.part.transformation.TransformationHandler.command"
+                  style="push"
+                  tooltip="Generate SQL DDL">
+            </command>
+            -->
+            
+            <command
+               commandId="org.eclipse.ui.help.aboutAction"
+               style="push">
+            </command>
+            
+         </toolbar>
+      </menuContribution>
+</extension>
+
+	<!-- Perspequitiva -->
+  <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="dsql.custom.part.perspective.PerspectiveFactory"
+            id="eer.diagram.custom.part.perspective.perspective"
+            icon="icons/obj16/DsqlDiagramFile.gif"
+            name="DSQL">
+      </perspective>
+   </extension>
+
+    <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="eer.diagram.custom.part.perspective.perspective">        
+     
+            <hiddenMenuItem id="file"></hiddenMenuItem>
+     		<hiddenMenuItem id="edit"></hiddenMenuItem>
+     		<hiddenMenuItem id="navigate"></hiddenMenuItem>
+     		<hiddenMenuItem id="project"></hiddenMenuItem>
+     		<hiddenMenuItem id="help"></hiddenMenuItem>
+     		<hiddenMenuItem id="window"></hiddenMenuItem>
+     		
+            <hiddenToolBarItem id="newWizardDropDown"></hiddenToolBarItem>
+            <hiddenToolBarItem id="org.eclipse.ui.file.saveAll"></hiddenToolBarItem>
+            <hiddenToolBarItem id="print"></hiddenToolBarItem>
+     
+            <hiddenToolBarItem id="org.eclipse.ui.workbench.navigate"></hiddenToolBarItem>
+            <hiddenToolBarItem id="org.eclipse.ui.navigate.backwardHistory"></hiddenToolBarItem>
+            <hiddenToolBarItem id="org.eclipse.ui.navigate.next"> </hiddenToolBarItem>
+            <hiddenToolBarItem id="org.eclipse.ui.navigate.forwardHistory"></hiddenToolBarItem>
+            <hiddenToolBarItem id="org.eclipse.ui.window.pinEditor"></hiddenToolBarItem>
+            <hiddenToolBarItem id="org.eclipse.ui.navigate.previous"></hiddenToolBarItem>
+            <hiddenToolBarItem id="org.eclipse.ui.edit.text.gotoLastEditPosition"></hiddenToolBarItem>
+            
+            <hiddenToolBarItem id="org.eclipse.ui.workbench.help"></hiddenToolBarItem>
+            
+      	</perspectiveExtension>
+      </extension>
+
+<!--  Activities -->
+	
+	<extension point="org.eclipse.ui.activities">
+   
+	   <activity
+	        id="eercase.activity.disabled"
+	        name="name">
+	  </activity>
+  	  <activityPatternBinding activityId="eercase.activity.disabled" 
+		pattern="org\.eclipse\.gmf\.runtime\.diagram\.ui\..*/.*diagramMenu" > 
+		</activityPatternBinding>
+		
+		<activityPatternBinding activityId="eercase.activity.disabled" 
+		pattern="org\.eclipse\.gmf\.runtime\..*/.*selectMenu" > 
+		</activityPatternBinding>
+				
+		<activityPatternBinding activityId="eercase.activity.disabled" 
+		pattern="org\.eclipse\.gmf\.runtime\..*/.*arrangeMenu" > 
+		</activityPatternBinding>
+
+<!--
+  		<activityPatternBinding activityId="eercase.activity.disabled" 
+		pattern="org\.eclipse\.gmf\.runtime\..*/.*alignMenu" > 
+		</activityPatternBinding>
+-->
+
+    	<activityPatternBinding activityId="eercase.activity.disabled" 
+		pattern="org\.eclipse\.gmf\.runtime\..*/.*compartmentMenu" > 
+		</activityPatternBinding>
+
+    	<activityPatternBinding activityId="eercase.activity.disabled" 
+		pattern="org\.eclipse\.gmf\.runtime\..*/.*fontBoldAction" > 
+		</activityPatternBinding>
+		
+		<activityPatternBinding activityId="eercase.activity.disabled" 
+		pattern="org\.eclipse\.gmf\.runtime\..*/.*fontItalicAction" > 
+		</activityPatternBinding>		
+		
+		<activityPatternBinding activityId="eercase.activity.disabled" 
+		pattern="org\.eclipse\.gmf\.runtime\..*/.*routerMenu" > 
+		</activityPatternBinding>			
+
+		<activityPatternBinding activityId="eercase.activity.disabled" 
+		pattern="org\.eclipse\.gmf\.runtime\..*/.*connectorLabelMenu" > 
+		</activityPatternBinding>	
+
+		<activityPatternBinding activityId="eercase.activity.disabled" 
+		pattern="org\.eclipse\.gmf\.runtime\..*/.*autoSizeAction" > 
+		</activityPatternBinding>	
+		
+		<activityPatternBinding activityId="eercase.activity.disabled" 
+		pattern="org\.eclipse\.gmf\.runtime\..*/.*showConnectorLabels" > 
+		</activityPatternBinding>	
+		
+		<activityPatternBinding activityId="eercase.activity.disabled" 
+		pattern="org\.eclipse\.gmf\.runtime\..*/.*hideConnectorLabels" > 
+		</activityPatternBinding>	
+		
+		<activityPatternBinding activityId="eercase.activity.disabled" 
+		pattern="org\.eclipse\.gmf\.runtime\..*/.*copyAppearancePropertiesAction" > 
+		</activityPatternBinding>			
+
+  </extension>
+
+   <extension  point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+   
+   	   <contributionItemProvider   checkPluginLoaded="true"
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider">
+            <Priority name="Low"> </Priority>
+       
+ 		<partContribution class="dsql.diagram.part.DsqlDiagramEditor">
+ 			<partPredefinedItem
+                  id="lineColorContributionItem"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true">
+            </partPredefinedItem>
+            
+			<partPredefinedItem	
+                  id="fontNameContributionItem"	
+                  removeFromMenubar="true"	
+                  removeFromToolbar="true">	
+            </partPredefinedItem>
+		
+           <partPredefinedItem	
+                 id="fontSizeContributionItem"	
+                  removeFromMenubar="true"	
+                  removeFromToolbar="true">	
+            </partPredefinedItem>            
+ 
+ 		  </partContribution>
+                          
+        </contributionItemProvider>             
+   
+   </extension>
+
+	<!-- Padrao -->
+	
    <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
       <?gmfgen generated="true"?>
       <fileTypes type="text" extension="dsql"/>
@@ -1464,6 +1648,18 @@
 
    <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.eclipse.ui.ide.workbench"
+            name="DSQL">
+         <property
+               name="appName"
+               value="DSQL">
+         </property>
+      </product>
    </extension>
 
    <!-- optionally, specify keybindings -->
