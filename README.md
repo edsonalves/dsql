@@ -1,4 +1,4 @@
-Diagrammatic Structured Query Language (DSQL)
+# Diagrammatic Structured Query Language (DSQL)
 
 An expressive Visual Query Language (VQL) for modeling complex SQL queries
 
