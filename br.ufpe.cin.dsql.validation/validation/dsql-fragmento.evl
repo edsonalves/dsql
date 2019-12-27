@@ -1,0 +1,25 @@
+context Query {
+  critique SubQueryDistinct{
+    check{
+      if(SubqueryLink.allInstances().exists(x | x.source = self)
+         and self.setQuantifier = SetQuantifier#Distinct ) {
+  		return false;
+  	  }
+  	  return true;
+    }
+    message : 'Distinct em subconsulta'
+  }
+  critique SubQueryOrderBy{
+    check{
+      if(SubqueryLink.allInstances().exists(x | x.source = self)) {
+    	for(cr in self.select ){
+    	  if(cr.sortOrder <> 0){
+    	    return false;
+    	  }
+    	}
+  	  }
+  	  return true;
+    }
+    message : 'Order By em subconsulta'
+  }
+}

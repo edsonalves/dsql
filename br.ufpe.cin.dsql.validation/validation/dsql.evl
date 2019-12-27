@@ -1,0 +1,119 @@
+context Query {
+  constraint HasName {
+    check : self.name.isDefined()
+    message : 'Unnamed ' + self.eClass().name + ' not allowed'
+  }
+  
+  constraint HasSelectItem {
+    check : self.select->notEmpty()
+    message : 'Specify at least one select item'
+  }
+  
+  constraint HasFromItem {
+    check : self.from->notEmpty()
+    message : 'Specify at least one from item'
+  }
+  
+  critique SubQueryDistinct{
+    check{
+      if(SubqueryLink.allInstances().exists(x | x.source = self)
+         and self.setQuantifier = SetQuantifier#Distinct ) {
+  		return false;
+  	  }
+  	  return true;
+    }
+    message : 'Distinct em subconsulta'
+  }
+  
+  critique SubQueryOrderBy{
+    check{
+      if(SubqueryLink.allInstances().exists(x | x.source = self)) {
+    	for(cr in self.select ){
+    	  if(cr.sortOrder <> 0){
+    	    return false;
+    	  }
+    	}
+  	  }
+  	  return true;
+    }
+    message : 'Order By em subconsulta'
+  }
+}
+
+context Column {
+  constraint HasName {
+    check : self.name.isDefined()
+    message : 'Unnamed ' + self.eClass().name + ' not allowed'
+  }
+  
+  critique HasTable {
+    check : self.table.isDefined()
+    message : 'You must specify a table'
+  }
+
+/*  
+  //To use an aggregation function, you must group the others column;
+  constraint AggregationFunction {
+    check{
+    	if(self.aggregationFunction <> AggregationFunction#None ){
+    		var q : Query := null;  		
+    		q = Query.allInstances().selectOne(x | x.projections->includes(self));
+    		//("Printing : " + q)->println();
+    		for(pr in q.projections.select(x | x <> self) ){
+    			if(pr.groupOrder == 0){
+    				return false;
+    			}
+    		}
+    	}
+    	return true;
+    }
+    message : 'To use an aggregation function, you must group the others column'
+  }
+ */ 
+}
+
+context Source {
+  constraint HasName {
+    check : self.name.isDefined()
+    message : 'Unnamed ' + self.eClass().name + ' not allowed'
+  }
+}
+
+
+/*context Operation {
+  constraint GeographicHasGeoArgument {
+    check {
+    	if( 'Geographic'.isSubstringOf( self.eclass().name )) {
+    		
+    		if(self.isKindOf(Unary)){
+    			return false;
+    		}
+    	}
+    	return true;
+    } 
+    message : 'Unnamed ' + self.eClass().name + ' not allowed'
+  }
+}
+
+context When {
+  constraint IsSourceOfCaseLink {
+  	check {
+  		if(CaseLink.allInstances().exists(x | x.source = self)) {
+  		  return true;
+  		}
+  	  return false;
+  	}
+  	message : 'Constructor When need be source of a CaseLink'
+  }
+  
+  constraint IsTargetOfCaseLink {
+  	check {
+  		if(CaseLink.allInstances().exists(x | x.target = self)) {
+  		  return true;
+  		}
+  	  return false;
+  	}
+  	message : 'Constructor When need be target of a CaseLink'
+  }
+}
+*/

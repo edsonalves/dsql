@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dsql" nsURI="dsql" nsPrefix="dsql">
+  <eAnnotations source="gmf"/>
+  <eClassifiers xsi:type="ecore:EClass" name="QueryDiagram">
+    <eAnnotations source="gmf.diagram">
+      <details key="onefile" value="true"/>
+      <details key="diagram.extension" value="dsql"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="queries" upperBound="-1"
+        eType="#//Query" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="links" upperBound="-1"
+        eType="#//Link" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="logicalOperations" upperBound="-1"
+        eType="#//LogicalOperation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditionalExpressions"
+        upperBound="-1" eType="#//ConditionalExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Query">
+    <eAnnotations source="gmf.node">
+      <details key="resizable" value="false"/>
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="border.width" value="1"/>
+      <details key="border.color" value="0,0,0"/>
+      <details key="margin" value="3"/>
+      <details key="figure" value="rectangle"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="limitOffset" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="limitRowCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="setQuantifier" eType="#//SetQuantifier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="select" upperBound="-1"
+        eType="#//ColumnReference" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="from" upperBound="-1" eType="#//SourceAndExpression"
+        containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="whereHaving" eType="#//Expression"
+        containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ColumnReference" abstract="true">
+    <eAnnotations source="gmf.node">
+      <details key="resizable" value="false"/>
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="border.width" value="1"/>
+      <details key="border.color" value="255,255,255"/>
+      <details key="margin" value="3"/>
+      <details key="figure" value="rectangle"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="groupOrder" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sortOrder" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sortSpecification" eType="#//SortSpecification"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregationFunction" eType="#//AggregationFunction"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="table" eType="#//Source"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SourceAndExpression" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Source" eSuperTypes="#//SubqueryTarget #//SourceAndExpression">
+    <eAnnotations source="gmf.node">
+      <details key="resizable" value="false"/>
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="border.width" value="1"/>
+      <details key="border.color" value="255,255,255"/>
+      <details key="margin" value="3"/>
+      <details key="figure" value="rectangle"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//SourceType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true" eSuperTypes="#//Operand #//SourceAndExpression #//ColumnReference"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Operation" abstract="true" eSuperTypes="#//Expression">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="operation"/>
+      <details key="border.color" value="0,0,0"/>
+      <details key="border.style" value="dash"/>
+      <details key="margin" value="3"/>
+      <details key="figure" value="rectangle"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="negation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Operand" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Unary" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operation" eType="#//UnaryOp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand1" lowerBound="1"
+        eType="#//Operand" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Binary" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operation" eType="#//BinaryOp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand1" lowerBound="1"
+        eType="#//Operand" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand2" lowerBound="1"
+        eType="#//Operand" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Ternary" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operation" eType="#//TernaryOp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand1" lowerBound="1"
+        eType="#//Operand" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand2" lowerBound="1"
+        eType="#//Operand" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand3" lowerBound="1"
+        eType="#//Operand" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LogicalOperation">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="type"/>
+      <details key="resizable" value="false"/>
+      <details key="label.icon" value="false"/>
+      <details key="border.width" value="1"/>
+      <details key="border.color" value="0,0,0"/>
+      <details key="margin" value="3"/>
+      <details key="figure" value="rectangle"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//LogicalOperationType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="negation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" lowerBound="1"
+        upperBound="-1" eType="#//Expression" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionalExpressionSource" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditionalExpressionLink"
+        lowerBound="1" eType="#//ConditionalExpressionLink" eOpposite="#//ConditionalExpressionLink/source"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionalExpression" abstract="true">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="label"/>
+      <details key="label.readOnly" value="true"/>
+      <details key="resizable" value="false"/>
+      <details key="label.icon" value="false"/>
+      <details key="border.width" value="1"/>
+      <details key="border.color" value="0,0,0"/>
+      <details key="margin" value="3"/>
+      <details key="figure" value="rectangle"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="When" eSuperTypes="#//ConditionalExpression #//ConditionalExpressionSource">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
+        eType="#//Expression" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="result" lowerBound="1"
+        eType="#//Expression" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Else" eSuperTypes="#//ConditionalExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="result" lowerBound="1"
+        eType="#//Expression" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SubqueryTarget" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subqueryLinkTarget" lowerBound="1"
+        eType="#//SubqueryLink" eOpposite="#//SubqueryLink/target"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Column" eSuperTypes="#//SubqueryTarget #//ConditionalExpressionSource #//Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ColumnType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="logicalLink" lowerBound="1"
+        eType="#//LogicalLink" eOpposite="#//LogicalLink/source"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Link" abstract="true">
+    <eAnnotations source="gmf.link">
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="incoming" value="true"/>
+      <details key="color" value="0,0,0"/>
+      <details key="width" value="1"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SetLink" eSuperTypes="#//Link">
+    <eAnnotations source="gmf.link">
+      <details key="style" value="dash"/>
+      <details key="target.decoration" value="filledclosedarrow"/>
+      <details key="label" value="setOperator"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="setQuantifier" eType="#//SetQuantifier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="setOperator" eType="#//SetOperator"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//Query"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//Query"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="JoinLink" eSuperTypes="#//Link">
+    <eAnnotations source="gmf.link">
+      <details key="style" value="dash"/>
+      <details key="target.decoration" value="filledclosedarrow"/>
+      <details key="label" value="joinType"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="foreignKeyName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="joinType" eType="#//JoinType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//Source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//Source"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="JoinConditionLink" eSuperTypes="#//Link">
+    <eAnnotations source="gmf.link">
+      <details key="style" value="dash"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//JoinLink"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//Expression"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SubqueryLink" eSuperTypes="#//Link">
+    <eAnnotations source="gmf.link">
+      <details key="style" value="solid"/>
+      <details key="label" value="operation"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operation" eType="#//BinaryOp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//Query"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//SubqueryTarget" eOpposite="#//SubqueryTarget/subqueryLinkTarget"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LogicalLink" eSuperTypes="#//Link">
+    <eAnnotations source="gmf.link">
+      <details key="style" value="solid"/>
+      <details key="target.decoration" value="arrow"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//Column" eOpposite="#//Column/logicalLink"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//LogicalOperation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionalExpressionLink" eSuperTypes="#//Link">
+    <eAnnotations source="gmf.link">
+      <details key="style" value="solid"/>
+      <details key="target.decoration" value="closedarrow"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//ConditionalExpressionSource" eOpposite="#//ConditionalExpressionSource/conditionalExpressionLink"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//ConditionalExpression"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SetOperator">
+    <eLiterals name="Intersect"/>
+    <eLiterals name="Union" value="1"/>
+    <eLiterals name="Except" value="2"/>
+    <eLiterals name="ExclusiveUnion" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="JoinType">
+    <eLiterals name="Inner"/>
+    <eLiterals name="FullOuter" value="1"/>
+    <eLiterals name="LeftOuter" value="2"/>
+    <eLiterals name="RightOuter" value="3"/>
+    <eLiterals name="FullOuterExcluding" value="4"/>
+    <eLiterals name="LeftOuterExcluding" value="5"/>
+    <eLiterals name="RightOuterExcluding" value="6"/>
+    <eLiterals name="Semi" value="7"/>
+    <eLiterals name="Anti" value="8"/>
+    <eLiterals name="Division" value="9"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="LogicalOperationType">
+    <eLiterals name="And"/>
+    <eLiterals name="Or" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ColumnType">
+    <eLiterals name="Field"/>
+    <eLiterals name="Literal" value="1"/>
+    <eLiterals name="FreeExpression" value="2"/>
+    <eLiterals name="LogicalConnective" value="3"/>
+    <eLiterals name="ConditionalExpression" value="4"/>
+    <eLiterals name="Subquery" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SourceType">
+    <eLiterals name="Table"/>
+    <eLiterals name="Subquery" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SetQuantifier">
+    <eLiterals name="All"/>
+    <eLiterals name="Distinct" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SortSpecification">
+    <eLiterals name="Ascending"/>
+    <eLiterals name="Descending" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AggregationFunction">
+    <eLiterals name="None"/>
+    <eLiterals name="AVG" value="1"/>
+    <eLiterals name="MAX" value="2"/>
+    <eLiterals name="MIN" value="3"/>
+    <eLiterals name="SUM" value="4"/>
+    <eLiterals name="COUNT" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="UnaryOp">
+    <eLiterals name="Exists"/>
+    <eLiterals name="IsNull" value="1"/>
+    <eLiterals name="Unique" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BinaryOp">
+    <eLiterals name="Equals"/>
+    <eLiterals name="NotEquals" value="1"/>
+    <eLiterals name="GreaterThan" value="2"/>
+    <eLiterals name="GreaterThanOrEquals" value="3"/>
+    <eLiterals name="LessThan" value="4"/>
+    <eLiterals name="LessThanOrEquals" value="5"/>
+    <eLiterals name="Addition" value="6"/>
+    <eLiterals name="Subtraction" value="7"/>
+    <eLiterals name="Multiplication" value="8"/>
+    <eLiterals name="Divison" value="9"/>
+    <eLiterals name="Concatenation" value="10"/>
+    <eLiterals name="In" value="11"/>
+    <eLiterals name="Like" value="12"/>
+    <eLiterals name="Similar" value="13"/>
+    <eLiterals name="Overlaps" value="14"/>
+    <eLiterals name="Any" value="15"/>
+    <eLiterals name="AnyEquals" value="16"/>
+    <eLiterals name="AnyNotEquals" value="17"/>
+    <eLiterals name="AnyGreaterThan" value="18"/>
+    <eLiterals name="AnyGreaterThanOrEquals" value="19"/>
+    <eLiterals name="AnyLessThan" value="20"/>
+    <eLiterals name="AnyLessThanOrEquals" value="21"/>
+    <eLiterals name="All" value="22"/>
+    <eLiterals name="AllEquals" value="23"/>
+    <eLiterals name="AllNotEquals" value="24"/>
+    <eLiterals name="AllGreaterThan" value="25"/>
+    <eLiterals name="AllGreaterThanOrEquals" value="26"/>
+    <eLiterals name="AllLessThan" value="27"/>
+    <eLiterals name="AllLessThanOrEquals" value="28"/>
+    <eLiterals name="None" value="99"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TernaryOp">
+    <eLiterals name="Between"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DSQL Validation
+Bundle-SymbolicName: br.ufpe.cin.dsql.validation;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: br.cin.ufpe.dsql.validation
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.ui.ide;bundle-version="3.12.1",
+ org.eclipse.epsilon.evl.emf.validation;bundle-version="1.4.0"
